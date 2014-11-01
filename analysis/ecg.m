@@ -10,15 +10,16 @@ t = (1/fs) * (0:1:(N-1));
 
 ECG_data = data(:,5);
 
-[~,locs_Rwave] = findpeaks(ECG_data,'MinPeakHeight',3,...
-                                    'MinPeakDistance',0.5*fs);
+[~,locs_Rwave] = findpeaks(ECG_data,'MinPeakHeight',3.25,...
+                                    'MinPeakDistance',60/150*fs); 
+                                    %assume HR no more than 150
 figure
 hold on
 plot(t,ECG_data);
 plot(t(locs_Rwave),ECG_data(locs_Rwave),'rv','MarkerFaceColor','r');
 grid on
-title('Thresholding Peaks in Signal')
+title('Marking Peaks in ECG')
 xlabel('Time'); ylabel('Amplitude')
 legend('ECG signal','R-wave');
-
+xlim([10,15]);
 disp('finished');
