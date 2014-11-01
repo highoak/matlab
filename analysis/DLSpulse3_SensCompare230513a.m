@@ -350,6 +350,7 @@ if exist(f_path)
         a=12;
         pause(1)
         end
+        break
     end
     
 else
