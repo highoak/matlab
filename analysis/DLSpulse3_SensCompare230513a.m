@@ -20,7 +20,7 @@ Exp_PathS=struct('name','xxx');
 %Exp_PathS(1).name='F:\BP2012\SKsystem6\LabTest\';
 %Exp_PathS(1).name='F:\BP2012\SKsystem6\CurrentTest\';
 %Exp_PathS(1).name='D:\DataElfior\DeltranTransducer\Ymode_Msens-FingL2tip_DLSphalange2-OcclSensor\Test08_260614_DLSstation\HomeTest_260614\';
-Exp_PathS(1).name='D:\DLS_Station2014\';
+Exp_PathS(1).name='..\data';
 %Exp_PathS(1).name='D:\BP2013a\DLSCurrentTest\';
 %Exp_PathS(1).name='D:\DialysisTestStand160912\April 03i09 test1\';
 PathI=1;   %Select the work dir path!!!
@@ -120,7 +120,7 @@ if exist(f_path)
                 data(:,7)=filtfilt(b5,a5,data(:,7));
                 data(:,8)=filtfilt(b5,a5,data(:,8));
             end
-            figure(1)
+            figure;
             plotyy(TimeData,data(:,4),TimeData,data(:,5)); % SP and ECG
             %plot(TimeData,data(:,4:5)); % SP and ECG
             %plotyy(TimeData,data(:,4),TimeData,[data(:,7),data(:,8)]); %SP and PPG
@@ -279,7 +279,7 @@ if exist(f_path)
             %dls0(1,:)=PULSEwave(1,:);
             dls=dls0(1,:); %dls2=dls0(2,:);
             Ldls=1:length(dls); % dls=dls0(4,:);
-            figure(1); plot(TimeDLS,dls0(1,:)); pause(1)
+            figure; plot(TimeDLS,dls0(1,:)); pause(1)
             %             figure(2); plot(Ldls,dls0(2,:)); pause(1)
             %             figure(3); plot(Ldls,dls0(3,:)); pause(1)
             %             figure(4); plot(Ldls,dls0(4,:)); pause(1)
@@ -287,7 +287,7 @@ if exist(f_path)
             %             figure(5); plot(Ldls,dls0(1,:),Ldls,dls0(2,:),Ldls,dls0(3,:),Ldls,dls0(4,:));
             %pause(1)
             if 0   %akm==1
-                figure(7); plot(TimeDLS,dls00(1,:,1),TimeDLS,dls00(1,:,2),TimeDLS,dls00(1,:,3));
+                figure; plot(TimeDLS,dls00(1,:,1),TimeDLS,dls00(1,:,2),TimeDLS,dls00(1,:,3));
                 title(['Hurst, DLSsens # ',t2_text],'FontSize',12,'FontWeight','bold');
             end
             pause(1)
@@ -322,13 +322,13 @@ if exist(f_path)
         AVGDLS=[AVGDLS;[Avg3DLS,AvgH3DLS]];
         STDDLS=[STDDLS;[std3DLS,stdH3DLS]];
         t2_text1=[t2_text(1),'-',t2_text(end)]; n17=n17+1; n17txt=num2str(n17);
-        figure(8); plot(TimeDLS,dls3sens(:,1),TimeDLS,dls3sens(:,2),TimeDLS,dls3sens(:,3));
+        figure; plot(TimeDLS,dls3sens(:,1),TimeDLS,dls3sens(:,2),TimeDLS,dls3sens(:,3));
         title(['meas # ',n17txt,', DLS, DLSsens # ',t2_text1],'FontSize',12,'FontWeight','bold'); %hold on
         %figure(8); plot(Ldls',dls3sens(:,1),Ldls',dls3sens(:,2));
         %a=12;
         SP1=downsample(SP2,400);
-        ECG1=downsample(FCG2,400);
-        figure(9); 
+        ECG1=downsample(ECG2,400);
+        figure; 
         plotyy(TimeDLS,[dls3sens(:,1),dls3sens(:,2),dls3sens(:,3)],TimeDLS,[SP1,ECG1]);
         %title(['meas # ',n17txt,', DLS, DLSsens # ',t2_text1],'FontSize',12,'FontWeight','bold'); %hold on
         %figure(9); plot(TimeDLS,dlsHsens(:,1),TimeDLS,dlsHsens(:,2),TimeDLS,dlsHsens(:,3));
@@ -340,13 +340,13 @@ if exist(f_path)
         AVGtxt=num2str(AVGout); %STDtxt=num2str(STDout1);
         STD1=STDout/AVGout*100; STD1txt=num2str(STD1);
         n17=n17+1; n17txt=num2str(n17);
-        figure(10)
+        figure;
         %grid off
         errorbar(n17,AVGout,STDout,'--ob','MarkerSize',12)
         title(['meas # ',n17txt,',  Mean&Std(dlsH1) = ',AVGtxt,' & ',STD1txt,' %'],'FontSize',12,'FontWeight','bold')
         %grid on
         hold on
-        figure(11); plot(TimeDLS,dls0(1,:),TimeDLS,PPdec); pause(1)
+        figure; plot(TimeDLS,dls0(1,:),TimeDLS,PPdec); pause(1)
         a=12;
         pause(1)
         end
