@@ -48,5 +48,18 @@ for km1=1:3
     dls00(:,km1)=dls00(:,km1)+abs(min(dls00(:,km1)));
 end
 
-figure;
-plotyy(time, ECG, time_dls, dls00);
+
+[~,locs_Rwave] = findpeaks(ECG,'MinPeakHeight',3.25,...
+                                    'MinPeakDistance',60/150*fs); 
+
+
+figure
+hold on
+plot(time_dls,dls0);
+plot(time(locs_Rwave),dls0(fix(locs_Rwave*Fr/fs)),'rv','MarkerFaceColor','r');
+grid on
+title('Marking Peaks in DLS')
+xlabel('Time'); ylabel('Amplitude')
+legend('DLS signal','Peak');
+xlim([10,15]);
+
